@@ -43,7 +43,7 @@ restService.post('/hook', function (req, res) {
                         }
                     });
                     var response = JSON.parse(msg);
-					speech += city+' '+date + ' ' + response.location;
+					speech += city+' ' + response.location;
 
                 }
             }
