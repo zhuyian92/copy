@@ -29,9 +29,13 @@ restService.post('/hook', function (req, res) {
                     //speech += 'action: ' + requestBody.result.action;
                     var city = req.body.result.parameters['geo-city'];
                     console.log(city);
-                    var date = req.body.result.parameters['date'];
-                    console.log(date);
-					speech += requestBody.result;
+                    if (req.body.result.parameters['date']) {
+                        var date = req.body.result.parameters['date'];
+                        console.log('Date: ' + date);
+                    }
+
+					speech += city+' '+date;
+
                 }
             }
         }
