@@ -27,13 +27,13 @@ restService.post('/hook', function (req, res) {
 
                 if (requestBody.result.action) {
                     //speech += 'action: ' + requestBody.result.action;
-					speech += requestBody.result;
+					speech += "yian zhu" + requestBody.result;
                 }
             }
         }
 
-        // console.log('result: ', speech);
-                console.log('result: yian zhu');
+        console.log('result: ', speech);
+                // console.log('result: yian zhu');
         return res.json({
             speech: speech,
             displayText: speech,
