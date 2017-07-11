@@ -43,8 +43,17 @@ restService.post('/hook', function (req, res) {
                         }
                     });
                     var response = JSON.parse(msg);
-					speech += city+' '+date + response.location;
 
+                    var forecast = response['data']['weather'][0];
+                    var location = response['data']['request'][0];
+                    var conditions = response['data']['current_condition'][0];
+                    var currentConditions = conditions['weatherDesc'][0]['value'];
+                    var output = `Current conditions in the ${location['type']} 
+                    ${location['query']} are ${currentConditions} with a projected high of
+                    ${forecast['maxtempC']}°C or ${forecast['maxtempF']}°F and a low of 
+                    ${forecast['mintempC']}°C or ${forecast['mintempF']}°F on 
+                    ${forecast['date']}.`;
+                    speech += output;
                 }
             }
         }
@@ -122,7 +131,7 @@ restService.listen((process.env.PORT || 5000), function () {
         // let location = response['data']['request'][0];
         // let conditions = response['data']['current_condition'][0];
         // let currentConditions = conditions['weatherDesc'][0]['value'];
-        // // Create response
+        // // // Create response
         // let output = `Current conditions in the ${location['type']} 
         // ${location['query']} are ${currentConditions} with a projected high of
         // ${forecast['maxtempC']}°C or ${forecast['maxtempF']}°F and a low of 
