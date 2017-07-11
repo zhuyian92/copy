@@ -33,8 +33,17 @@ restService.post('/hook', function (req, res) {
                         var date = req.body.result.parameters['date'];
                         console.log('Date: ' + date);
                     }
-
-					speech += city+' '+date;
+                    $.ajax({
+                        Type: "GET",
+                        contentType: "application/json",
+                        url: "http://api.worldweatheronline.com/free/v1/weather.ashx?q=London&format=json&num_of_days=5&key=9b586ac440a244c0bbd205511171107",
+                        
+                        success: function (msg) {
+                            $("#success").text(msg);
+                        }
+                    });
+                    var response = JSON.parse(msg);
+					speech += city+' '+date + ' ' + response.location;
 
                 }
             }
@@ -108,17 +117,17 @@ restService.listen((process.env.PORT || 5000), function () {
 //       res.on('data', (d) => { body += d; }); // store each response chunk
 //       res.on('end', () => {
 //         // After all the data has been received parse the JSON for desired data
-//         let response = JSON.parse(body);
-//         let forecast = response['data']['weather'][0];
-//         let location = response['data']['request'][0];
-//         let conditions = response['data']['current_condition'][0];
-//         let currentConditions = conditions['weatherDesc'][0]['value'];
-//         // Create response
-//         let output = `Current conditions in the ${location['type']} 
-//         ${location['query']} are ${currentConditions} with a projected high of
-//         ${forecast['maxtempC']}°C or ${forecast['maxtempF']}°F and a low of 
-//         ${forecast['mintempC']}°C or ${forecast['mintempF']}°F on 
-//         ${forecast['date']}.`;
+        let response = JSON.parse(body);
+        let forecast = response['data']['weather'][0];
+        let location = response['data']['request'][0];
+        let conditions = response['data']['current_condition'][0];
+        let currentConditions = conditions['weatherDesc'][0]['value'];
+        // Create response
+        let output = `Current conditions in the ${location['type']} 
+        ${location['query']} are ${currentConditions} with a projected high of
+        ${forecast['maxtempC']}°C or ${forecast['maxtempF']}°F and a low of 
+        ${forecast['mintempC']}°C or ${forecast['mintempF']}°F on 
+        ${forecast['date']}.`;
 //         // Resolve the promise with the output text
 //         console.log(output);
 //         resolve(output);
