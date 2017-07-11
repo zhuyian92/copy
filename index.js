@@ -39,7 +39,7 @@ restService.post('/hook', function (req, res) {
                         url: "http://api.worldweatheronline.com/free/v1/weather.ashx?q=London&format=json&num_of_days=5&key=9b586ac440a244c0bbd205511171107",
                         
                         success: function (msg) {
-                            $("#success").text(msg);
+                            //$("#success").text(msg);
                             // var response = JSON.parse(msg);
 
                             // var forecast = response['data']['weather'][0];
