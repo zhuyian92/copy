@@ -33,17 +33,17 @@ restService.post('/hook', function (req, res) {
                         var date = req.body.result.parameters['date'];
                         console.log('Date: ' + date);
                     }
-                    // $.ajax({
-                    //     Type: "GET",
-                    //     contentType: "application/json",
-                    //     url: "http://api.worldweatheronline.com/free/v1/weather.ashx?q=London&format=json&num_of_days=5&key=9b586ac440a244c0bbd205511171107",
+                    $.ajax({
+                        Type: "GET",
+                        contentType: "application/json",
+                        url: "http://api.worldweatheronline.com/free/v1/weather.ashx?q=London&format=json&num_of_days=5&key=9b586ac440a244c0bbd205511171107",
                         
-                    //     success: function (msg) {
-                    //         $("#success").text(msg);
-                    //     }
-                    // });
-                    // var response = JSON.parse(msg);
-					speech += city+' '+date;
+                        success: function (msg) {
+                            $("#success").text(msg);
+                        }
+                    });
+                    var response = JSON.parse(msg);
+					speech += city+' '+date + response.location;
 
                 }
             }
