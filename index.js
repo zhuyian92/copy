@@ -97,7 +97,7 @@ function httpGet(){
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
-                    }
+
 
 
 
