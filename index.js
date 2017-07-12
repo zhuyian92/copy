@@ -33,12 +33,16 @@ restService.post('/hook', function (req, res) {
                         var date = req.body.result.parameters['date'];
                         console.log('Date: ' + date);
                     }
-                    $.ajax({
-                        Type: "GET",
-                        contentType: "application/json",
-                        url: "http://api.worldweatheronline.com/free/v1/weather.ashx?q=London&format=json&num_of_days=5&key=9b586ac440a244c0bbd205511171107",
                         
-                        success: function (msg) {
+
+
+                    // $.ajax({
+                    //     Type: "GET",
+                    //     contentType: "application/json",
+                    //     url: "http://api.worldweatheronline.com/free/v1/weather.ashx?q=London&format=json&num_of_days=5&key=9b586ac440a244c0bbd205511171107",
+                        
+                    //     success: function (msg) {
+
                             //$("#success").text(msg);
                             // var response = JSON.parse(msg);
 
@@ -52,10 +56,10 @@ restService.post('/hook', function (req, res) {
                             // forecast['maxtempC'] + '°C or ' + forecast['maxtempF'] + '°F and a low of' 
                             // + forecast['mintempC'] + '°C or' + forecast['mintempF'] + '°F on' +
                             // forecast['date'];
-                            var output = 'Current conditions in the ';
-                        }
-                    });
-                    speech += output;
+                    //         var output = 'Current conditions in the ';
+                    //     }
+                    // });
+                    speech += " output";
                 }
             }
         }
