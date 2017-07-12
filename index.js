@@ -49,7 +49,7 @@ restService.post('/hook', function (req, res) {
                             var response = JSON.parse(this.responseText);
 
                             var forecast = response['data']['weather'][0];
-                            var maxTemp = forecast['maxtempC'];
+                            maxTemp = forecast['maxtempC'];
                             // var location = response['data']['request'][0];
                             // // var location_type = response['data']['request'][0]['type'];
                             // var conditions = response['data']['current_condition'][0];
@@ -66,7 +66,7 @@ restService.post('/hook', function (req, res) {
                     xmlhttp.send();
                 }
 
-                    speech += "output";
+                    speech += maxTemp;
                 }
             }
         }
