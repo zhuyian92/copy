@@ -4,6 +4,15 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const restService = express();
+
+function httpGet(){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+
 restService.use(bodyParser.json());
 
 restService.post('/hook', function (req, res) {
@@ -93,12 +102,6 @@ restService.listen((process.env.PORT || 5000), function () {
 
 
 
-function httpGet(){
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
-}
 
 
 
