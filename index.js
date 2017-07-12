@@ -65,6 +65,7 @@ restService.post('/hook', function (req, res) {
                     }
                     xmlhttp.open("GET", url, true);
                     xmlhttp.send();
+                }
                     speech += "output";
                     
                 }
