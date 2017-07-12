@@ -44,10 +44,10 @@ restService.post('/hook', function (req, res) {
                     // xmlhttp.open("GET", "json_demo.txt", true);
                     // xmlhttp.send();
 
-                    function httpGet("http://api.worldweatheronline.com/free/v1/weather.ashx?q=London&format=json&num_of_days=5&key=9b586ac440a244c0bbd205511171107")
+                    function httpGet("http://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today")
                     {
                         var xmlHttp = new XMLHttpRequest();
-                        xmlHttp.open( "GET", "http://api.worldweatheronline.com/free/v1/weather.ashx?q=London&format=json&num_of_days=5&key=9b586ac440a244c0bbd205511171107", false ); // false for synchronous request
+                        xmlHttp.open( "GET", "http://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", false ); // false for synchronous request
                         xmlHttp.send( null );
                         console.log(xmlHttp.responseText);
                     }
@@ -57,7 +57,7 @@ restService.post('/hook', function (req, res) {
                     // $.ajax({
                     //     Type: "GET",
                     //     contentType: "application/json",
-                    //     url: "http://api.worldweatheronline.com/free/v1/weather.ashx?q=London&format=json&num_of_days=5&key=9b586ac440a244c0bbd205511171107",
+                        // url: "http://api.worldweatheronline.com/free/v1/weather.ashx?q=London&format=json&num_of_days=5&key=9b586ac440a244c0bbd205511171107",
                         
                     //     success: function (msg) {
 
@@ -114,60 +114,62 @@ restService.listen((process.env.PORT || 5000), function () {
 
 
 
-'use strict';
-const http = require('http');
-const host = 'api.worldweatheronline.com';
-const wwoApiKey = '9b586ac440a244c0bbd205511171107';
-exports.weatherWebhook = (req, res) => {
-  // Get the city and date from the request
-  let city = req.body.result.parameters['geo-city']; // city is a required param
-  // Get the date for the weather forecast (if present)
-  let date = '';
-  if (req.body.result.parameters['date']) {
-    date = req.body.result.parameters['date'];
-    console.log('Date: ' + date);
-  }
-  // Call the weather API
-  callWeatherApi(city, date).then((output) => {
-    // Return the results of the weather API to API.AI
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify({ 'speech': output, 'displayText': output }));
-  }).catch((error) => {
-    // If there is an error let the user know
-    res.setHeader('Content-Type', 'application/json');
-    res.send(JSON.stringify({ 'speech': error, 'displayText': error }));
-  });
-};
-function callWeatherApi (city, date) {
-  return new Promise((resolve, reject) => {
-    // Create the path for the HTTP request to get the weather
-    let path = '/premium/v1/weather.ashx?format=json&num_of_days=1' +
-      '&q=' + encodeURIComponent(city) + '&key=' + wwoApiKey + '&date=' + date;
-    console.log('API Request: ' + host + path);
-    // Make the HTTP request to get the weather
-    http.get({host: host, path: path}, (res) => {
-      let body = ''; // var to store the response chunks
-      res.on('data', (d) => { body += d; }); // store each response chunk
-      res.on('end', () => {
-        // After all the data has been received parse the JSON for desired data
-        let response = JSON.parse(body);
-        let forecast = response['data']['weather'][0];
-        let location = response['data']['request'][0];
-        let conditions = response['data']['current_condition'][0];
-        let currentConditions = conditions['weatherDesc'][0]['value'];
-        // // Create response
-        let output = `Current conditions in the ${location['type']} 
-        ${location['query']} are ${currentConditions} with a projected high of
-        ${forecast['maxtempC']}°C or ${forecast['maxtempF']}°F and a low of 
-        ${forecast['mintempC']}°C or ${forecast['mintempF']}°F on 
-        ${forecast['date']}.`;
-        // Resolve the promise with the output text
-        console.log(output);
-        resolve(output);
-      });
-      res.on('error', (error) => {
-        reject(error);
-      });
-    });
-  });
-}
+// 'use strict';
+// const http = require('http');
+// const host = 'api.worldweatheronline.com';
+// const wwoApiKey = '9b586ac440a244c0bbd205511171107';
+// exports.weatherWebhook = (req, res) => {
+//   // Get the city and date from the request
+//   let city = req.body.result.parameters['geo-city']; // city is a required param
+//   // Get the date for the weather forecast (if present)
+//   let date = '';
+//   if (req.body.result.parameters['date']) {
+//     date = req.body.result.parameters['date'];
+//     console.log('Date: ' + date);
+//   }
+//   // Call the weather API
+//   callWeatherApi(city, date).then((output) => {
+//     // Return the results of the weather API to API.AI
+//     res.setHeader('Content-Type', 'application/json');
+//     res.send(JSON.stringify({ 'speech': output, 'displayText': output }));
+//   }).catch((error) => {
+//     // If there is an error let the user know
+//     res.setHeader('Content-Type', 'application/json');
+//     res.send(JSON.stringify({ 'speech': error, 'displayText': error }));
+//   });
+// };
+// function callWeatherApi (city, date) {
+//   return new Promise((resolve, reject) => {
+//     // Create the path for the HTTP request to get the weather
+//     let path = '/premium/v1/weather.ashx?format=json&num_of_days=1' +
+//       '&q=' + encodeURIComponent(city) + '&key=' + wwoApiKey + '&date=' + date;
+
+//     let path = '/premium/v1/weather.ashx?format=json&num_of_days=1&q=Los Angeles&key=9b586ac440a244c0bbd205511171107&date=';
+//     console.log('API Request: ' + host + path);
+//     // Make the HTTP request to get the weather
+//     http.get({host: host, path: path}, (res) => {
+//       let body = ''; // var to store the response chunks
+//       res.on('data', (d) => { body += d; }); // store each response chunk
+//       res.on('end', () => {
+//         // After all the data has been received parse the JSON for desired data
+//         let response = JSON.parse(body);
+//         let forecast = response['data']['weather'][0];
+//         let location = response['data']['request'][0];
+//         let conditions = response['data']['current_condition'][0];
+//         let currentConditions = conditions['weatherDesc'][0]['value'];
+//         // // Create response
+//         let output = `Current conditions in the ${location['type']} 
+//         ${location['query']} are ${currentConditions} with a projected high of
+//         ${forecast['maxtempC']}°C or ${forecast['maxtempF']}°F and a low of 
+//         ${forecast['mintempC']}°C or ${forecast['mintempF']}°F on 
+//         ${forecast['date']}.`;
+//         // Resolve the promise with the output text
+//         console.log(output);
+//         resolve(output);
+//       });
+//       res.on('error', (error) => {
+//         reject(error);
+//       });
+//     });
+//   });
+// }
