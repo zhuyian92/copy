@@ -63,8 +63,8 @@ restService.post('/hook', function (req, res) {
                             //alert(maxTemp);
                         }
                     };
-                    // xmlhttp.open("GET", url, true);
-                    // xmlhttp.send();
+                    xmlhttp.open("GET", url, true);
+                    xmlhttp.send();
           
                     speech += "output";
                     
