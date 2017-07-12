@@ -22,6 +22,7 @@ restService.post('/hook', function (req, res) {
             xmlHttp.send( null );
             return xmlHttp.responseText;
         }
+       
 
         var speech = 'empty speech';
 
@@ -45,9 +46,39 @@ restService.post('/hook', function (req, res) {
                         var date = req.body.result.parameters['date'];
                         console.log('Date: ' + date);
                     }
-
-                   
                      var string = httpGet();
+                    speech += "output";
+                }
+            }
+        }
+
+        console.log('result: ', speech);
+                // console.log('result: yian zhu');
+        return res.json({
+            speech: speech,
+            displayText: speech,
+            displayText: speech,
+            source: 'apiai-webhook-sample'
+        });
+    } catch (err) {
+        alert(err);
+        console.error("Can't process request", err);
+
+        return res.status(400).json({
+            status: {
+                code: 400,
+                errorType: err.message
+            }
+        });
+    }
+});
+
+restService.listen((process.env.PORT || 5000), function () {
+    console.log("Server listening");
+});
+
+
+
                     // var forecast = myObj['data']['weather'][0];        
                     // var location = myObj.location;
 
@@ -74,36 +105,6 @@ restService.post('/hook', function (req, res) {
                     //         var output = 'Current conditions in the ';
                     //     }
                     // });
-                    speech += "output";
-                }
-            }
-        }
-
-        console.log('result: ', speech);
-                // console.log('result: yian zhu');
-        return res.json({
-            speech: speech,
-            displayText: speech,
-            displayText: speech,
-            source: 'apiai-webhook-sample'
-        });
-    } catch (err) {
-        console.error("Can't process request", err);
-
-        return res.status(400).json({
-            status: {
-                code: 400,
-                errorType: err.message
-            }
-        });
-    }
-});
-
-restService.listen((process.env.PORT || 5000), function () {
-    console.log("Server listening");
-});
-
-
 
 
 
