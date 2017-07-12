@@ -34,23 +34,8 @@ restService.post('/hook', function (req, res) {
                         console.log('Date: ' + date);
                     }
 
-                    // var xmlhttp = new XMLHttpRequest();
-                    //     xmlhttp.onreadystatechange = function() {
-                    //         if (this.readyState == 4 && this.status == 200) {
-                    //             myObj = JSON.parse(this.responseText);
-                    //             document.getElementById("demo").innerHTML = myObj.name  ;
-                    //         }
-                    //     };
-                    // xmlhttp.open("GET", "json_demo.txt", true);
-                    // xmlhttp.send();
+                    var string = httpGet();
 
-                    function httpGet("http://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today")
-                    {
-                        var xmlHttp = new XMLHttpRequest();
-                        xmlHttp.open( "GET", "http://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", false ); // false for synchronous request
-                        xmlHttp.send( null );
-                        console.log(xmlHttp.responseText);
-                    }
                     // var forecast = myObj['data']['weather'][0];        
                     // var location = myObj.location;
 
@@ -105,6 +90,25 @@ restService.post('/hook', function (req, res) {
 restService.listen((process.env.PORT || 5000), function () {
     console.log("Server listening");
 });
+
+function httpGet(){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", "http://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+                    }
+
+
+
+
+
+
+
+
+
+
+
 
 
 // $json=file_get_contents($url);
@@ -173,3 +177,13 @@ restService.listen((process.env.PORT || 5000), function () {
 //     });
 //   });
 // }
+
+                 // var xmlhttp = new XMLHttpRequest();
+                    //     xmlhttp.onreadystatechange = function() {
+                    //         if (this.readyState == 4 && this.status == 200) {
+                    //             myObj = JSON.parse(this.responseText);
+                    //             document.getElementById("demo").innerHTML = myObj.name  ;
+                    //         }
+                    //     };
+                    // xmlhttp.open("GET", "json_demo.txt", true);
+                    // xmlhttp.send();
