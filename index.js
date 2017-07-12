@@ -43,7 +43,7 @@ restService.post('/hook', function (req, res) {
                     var url = "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&" +
                                 "q=" + city + "&key=9b586ac440a244c0bbd205511171107&date=" + date;
 
-   
+                    var xmlhttp = new XMLHttpRequest();
                     speech += "output";
                     
                 }
@@ -197,7 +197,7 @@ restService.listen((process.env.PORT || 5000), function () {
 
 
 
-                                     // var xmlhttp = new XMLHttpRequest();
+
                     // xmlhttp.onreadystatechange = function() {
                     //     if (this.readyState == 4 && this.status == 200) {
                     //         var response = JSON.parse(this.responseText);
@@ -217,5 +217,5 @@ restService.listen((process.env.PORT || 5000), function () {
                     //         alert(maxTemp);
                     //     }
                     // }
-                    // xmlhttp.open("GET", url, true);
-                    // xmlhttp.send();
+                    // // xmlhttp.open("GET", url, true);
+                    // // xmlhttp.send();
