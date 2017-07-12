@@ -40,28 +40,28 @@ restService.post('/hook', function (req, res) {
                         var date = req.body.result.parameters['date'];
                         console.log('Date: ' + date);
                     }
-                    // var url = "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&" +
-                    //             "q=" + city + "&key=9b586ac440a244c0bbd205511171107&date=" + date;
+                    var url = "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&" +
+                                "q=" + city + "&key=9b586ac440a244c0bbd205511171107&date=" + date;
 
-                //     var xmlhttp = new XMLHttpRequest();
-                //     xmlhttp.onreadystatechange = function() {
-                //         if (this.readyState == 4 && this.status == 200) {
-                //             var response = JSON.parse(this.responseText);
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var response = JSON.parse(this.responseText);
 
-                //             var forecast = response['data']['weather'][0];
-                //             var maxTemp = forecast['maxtempC'];
-                //             // var location = response['data']['request'][0];
-                //             // // var location_type = response['data']['request'][0]['type'];
-                //             // var conditions = response['data']['current_condition'][0];
-                //             // var currentConditions = conditions['weatherDesc'][0]['value'];
-                //             // var output = 'Current conditions in the '+ location['type'] +
-                //             // location['query'] + 'are' + currentConditions + 'with a projected high of'
-                //             // forecast['maxtempC'] + '°C or ' + forecast['maxtempF'] + '°F and a low of' 
-                //             // + forecast['mintempC'] + '°C or' + forecast['mintempF'] + '°F on' +
-                //             // forecast['date'];
-                //             alert(maxTemp);
-                //         }
-                //     };
+                            var forecast = response['data']['weather'][0];
+                            var maxTemp = forecast['maxtempC'];
+                            // var location = response['data']['request'][0];
+                            // // var location_type = response['data']['request'][0]['type'];
+                            // var conditions = response['data']['current_condition'][0];
+                            // var currentConditions = conditions['weatherDesc'][0]['value'];
+                            // var output = 'Current conditions in the '+ location['type'] +
+                            // location['query'] + 'are' + currentConditions + 'with a projected high of'
+                            // forecast['maxtempC'] + '°C or ' + forecast['maxtempF'] + '°F and a low of' 
+                            // + forecast['mintempC'] + '°C or' + forecast['mintempF'] + '°F on' +
+                            // forecast['date'];
+                            alert(maxTemp);
+                        }
+                    }
                 //     xmlhttp.open("GET", url, true);
                 //     xmlhttp.send();
                 // }
