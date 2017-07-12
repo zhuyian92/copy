@@ -7,7 +7,7 @@ const restService = express();
 
 
        
-        console.log(string);
+    
 
 restService.use(bodyParser.json());
 
@@ -79,29 +79,29 @@ restService.post('/hook', function (req, res) {
             }
         }
 
-//         console.log('result: ', speech);
-//                 // console.log('result: yian zhu');
-//         return res.json({
-//             speech: speech,
-//             displayText: speech,
-//             displayText: speech,
-//             source: 'apiai-webhook-sample'
-//         });
-//     } catch (err) {
-//         console.error("Can't process request", err);
+        console.log('result: ', speech);
+                // console.log('result: yian zhu');
+        return res.json({
+            speech: speech,
+            displayText: speech,
+            displayText: speech,
+            source: 'apiai-webhook-sample'
+        });
+    } catch (err) {
+        console.error("Can't process request", err);
 
-//         return res.status(400).json({
-//             status: {
-//                 code: 400,
-//                 errorType: err.message
-//             }
-//         });
-//     }
-// });
+        return res.status(400).json({
+            status: {
+                code: 400,
+                errorType: err.message
+            }
+        });
+    }
+});
 
-// restService.listen((process.env.PORT || 5000), function () {
-//     console.log("Server listening");
-// });
+restService.listen((process.env.PORT || 5000), function () {
+    console.log("Server listening");
+});
 
 
 
