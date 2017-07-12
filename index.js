@@ -12,6 +12,7 @@ const restService = express();
             return xmlHttp.responseText;
         }
          var string = httpGet();
+console.log(string);
 
 restService.use(bodyParser.json());
 
