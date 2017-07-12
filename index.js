@@ -34,7 +34,7 @@ restService.post('/hook', function (req, res) {
                         console.log('Date: ' + date);
                     }
 
-                    // var string = httpGet();
+                    var string = httpGet();
 
                     // var forecast = myObj['data']['weather'][0];        
                     // var location = myObj.location;
