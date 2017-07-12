@@ -40,37 +40,25 @@ restService.post('/hook', function (req, res) {
                         var date = req.body.result.parameters['date'];
                         console.log('Date: ' + date);
                     }
-                    // var url = "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&" +
-                    //             "q=" + city + "&key=9b586ac440a244c0bbd205511171107&date=" + date;
-                    // var xmlhttp = new XMLHttpRequest();
-                    // xmlhttp.onreadystatechange = function() {
-                    //     if (this.readyState == 4 && this.status == 200) {
-                    //         var response = JSON.parse(this.responseText);
+                    var url = "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&" +
+                                "q=" + city + "&key=9b586ac440a244c0bbd205511171107&date=" + date;
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.onreadystatechange = function() {
+                        if (this.readyState == 4 && this.status == 200) {
+                            var response = JSON.parse(this.responseText);
 
 
-                    //         var forecast = response['data']['weather'][0];
-                    //         //maxTemp = forecast['maxtempC'];
-                    //         conditions = response['data']['current_condition'][0];
-                    //         date = forecast['date'];
-                    //         currTemp = conditions['temp_F'];
+                            var forecast = response['data']['weather'][0];
+                            conditions = response['data']['current_condition'][0];
+                            currdate = forecast['date'];
+                            currTemp = conditions['temp_F'];
+                            alert(currTemp + " " +currdate);
 
 
-                    //         // var location = response['data']['request'][0];
-                    //         // // var location_type = response['data']['request'][0]['type'];
-                    //         // var conditions = response['data']['current_condition'][0];
-                    //         // var currentConditions = conditions['weatherDesc'][0]['value'];
-                    //         // var output = 'Current conditions in the '+ location['type'] +
-                    //         // location['query'] + 'are' + currentConditions + 'with a projected high of'
-                    //         // forecast['maxtempC'] + '°C or ' + forecast['maxtempF'] + '°F and a low of' 
-                    //         // + forecast['mintempC'] + '°C or' + forecast['mintempF'] + '°F on' +
-                    //         // forecast['date'];
-                    //         alert(currTemp + " " +date);
-
-
-                    //     }
-                    // };
-                    // xmlhttp.open("GET", "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", true);
-                    // xmlhttp.send();
+                        }
+                    };
+                    xmlhttp.open("GET", "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", true);
+                    xmlhttp.send();
           
                     speech += "output";
                     
@@ -247,3 +235,16 @@ restService.listen((process.env.PORT || 5000), function () {
                     // }
                     // xmlhttp.open("GET", url, true);
                     // xmlhttp.send();
+
+
+
+
+                                     // var location = response['data']['request'][0];
+                            // // var location_type = response['data']['request'][0]['type'];
+                            // var conditions = response['data']['current_condition'][0];
+                            // var currentConditions = conditions['weatherDesc'][0]['value'];
+                            // var output = 'Current conditions in the '+ location['type'] +
+                            // location['query'] + 'are' + currentConditions + 'with a projected high of'
+                            // forecast['maxtempC'] + '°C or ' + forecast['maxtempF'] + '°F and a low of' 
+                            // + forecast['mintempC'] + '°C or' + forecast['mintempF'] + '°F on' +
+                            // forecast['date'];
