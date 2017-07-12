@@ -17,9 +17,9 @@ restService.post('/hook', function (req, res) {
 
     try {
         // function httpGet(){
-        //     // var xmlHttp = new XMLHttpRequest();
-        //     // xmlHttp.open( "GET", "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", false ); // false for synchronous request
-        //     // xmlHttp.send( null );
+            // var xmlHttp = new XMLHttpRequest();
+            // xmlHttp.open( "GET", "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", false ); // false for synchronous request
+            // xmlHttp.send( null );
         //     // return xmlHttp.responseText;
         //     return "";
         // }
@@ -48,6 +48,10 @@ restService.post('/hook', function (req, res) {
                         console.log('Date: ' + date);
                     }
                      // var string = httpGet();
+                    var xmlHttp = new XMLHttpRequest();
+                    xmlHttp.open( "GET", "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", false ); // false for synchronous request
+                    xmlHttp.send( null );
+                    var msg = xmlHttp.responseText;
                     speech += "output";
                 }
             }
