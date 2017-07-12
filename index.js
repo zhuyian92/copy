@@ -5,14 +5,9 @@ const bodyParser = require('body-parser');
 
 const restService = express();
 
-        function httpGet(){
-            var xmlHttp = new XMLHttpRequest();
-            xmlHttp.open( "GET", "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", false ); // false for synchronous request
-            xmlHttp.send( null );
-            return xmlHttp.responseText;
-        }
-         var string = httpGet();
-console.log(string);
+
+       
+        console.log(string);
 
 restService.use(bodyParser.json());
 
@@ -21,7 +16,12 @@ restService.post('/hook', function (req, res) {
     console.log('hook request');
 
     try {
-
+        function httpGet(){
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", false ); // false for synchronous request
+            xmlHttp.send( null );
+            return xmlHttp.responseText;
+        }
 
         var speech = 'empty speech';
 
@@ -47,7 +47,7 @@ restService.post('/hook', function (req, res) {
                     }
 
                    
-
+                     var string = httpGet();
                     // var forecast = myObj['data']['weather'][0];        
                     // var location = myObj.location;
 
@@ -79,29 +79,29 @@ restService.post('/hook', function (req, res) {
             }
         }
 
-        console.log('result: ', speech);
-                // console.log('result: yian zhu');
-        return res.json({
-            speech: speech,
-            displayText: speech,
-            displayText: speech,
-            source: 'apiai-webhook-sample'
-        });
-    } catch (err) {
-        console.error("Can't process request", err);
+//         console.log('result: ', speech);
+//                 // console.log('result: yian zhu');
+//         return res.json({
+//             speech: speech,
+//             displayText: speech,
+//             displayText: speech,
+//             source: 'apiai-webhook-sample'
+//         });
+//     } catch (err) {
+//         console.error("Can't process request", err);
 
-        return res.status(400).json({
-            status: {
-                code: 400,
-                errorType: err.message
-            }
-        });
-    }
-});
+//         return res.status(400).json({
+//             status: {
+//                 code: 400,
+//                 errorType: err.message
+//             }
+//         });
+//     }
+// });
 
-restService.listen((process.env.PORT || 5000), function () {
-    console.log("Server listening");
-});
+// restService.listen((process.env.PORT || 5000), function () {
+//     console.log("Server listening");
+// });
 
 
 
