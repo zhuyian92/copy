@@ -16,13 +16,6 @@ restService.post('/hook', function (req, res) {
     console.log('hook request');
 
     try {
-        // function httpGet(){
-            // var xmlHttp = new XMLHttpRequest();
-            // xmlHttp.open( "GET", "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&q=ny&key=9b586ac440a244c0bbd205511171107&date=today", false ); // false for synchronous request
-            // xmlHttp.send( null );
-        //     // return xmlHttp.responseText;
-        //     return "";
-        // }
        
 
         var speech = 'empty speech';
@@ -49,7 +42,7 @@ restService.post('/hook', function (req, res) {
                     }
                     // var url = "https://api.worldweatheronline.com/premium/v1/weather.ashx?format=json&num_of_days=1&" +
                     //             "q=" + city + "&key=9b586ac440a244c0bbd205511171107&date=" + date;
-                                
+
                 //     var xmlhttp = new XMLHttpRequest();
                 //     xmlhttp.onreadystatechange = function() {
                 //         if (this.readyState == 4 && this.status == 200) {
@@ -72,7 +65,6 @@ restService.post('/hook', function (req, res) {
                 //     xmlhttp.open("GET", url, true);
                 //     xmlhttp.send();
                 // }
-            }
 
                     speech += "output";
                 }
