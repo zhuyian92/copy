@@ -33,12 +33,12 @@ restService.post('/hook', function (req, res) {
                         var date = req.body.result.parameters['date'];
                         console.log('Date: ' + date);
                     }
-                    
+
                     var xmlhttp = new XMLHttpRequest();
                         xmlhttp.onreadystatechange = function() {
                             if (this.readyState == 4 && this.status == 200) {
                                 myObj = JSON.parse(this.responseText);
-                                document.getElementById("demo").innerHTML = myObj.name;
+                                // document.getElementById("demo").innerHTML = myObj.;
                             }
                         };
                         xmlhttp.open("GET", "http://api.worldweatheronline.com/free/v1/weather.ashx?q=London&format=json&num_of_days=5&key=9b586ac440a244c0bbd205511171107", true);
