@@ -66,7 +66,7 @@ restService.post('/hook', function (req, res) {
                 //     xmlhttp.send();
                 // }
 
-                    speech += maxTemp;
+                    speech += "output";
                 }
             }
         }
